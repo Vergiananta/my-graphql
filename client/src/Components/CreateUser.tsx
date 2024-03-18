@@ -13,7 +13,7 @@ function CreateUser() {
       <input
         type="text"
         placeholder="name"
-        onChange={(event) => {
+        onChange={(event: any) => {
           setName(event.target.value);
         }}
       />
