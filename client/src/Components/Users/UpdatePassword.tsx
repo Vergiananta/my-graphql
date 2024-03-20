@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UPDATE_PASSWORD } from "../Graphql/Mutation";
+import { UPDATE_PASSWORD } from "../../Graphql/User/Mutation";
 import { useMutation } from "@apollo/client";
 
 function UpdatePassword() {

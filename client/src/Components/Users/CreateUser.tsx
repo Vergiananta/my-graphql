@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CREATE_USER } from "../Graphql/Mutation";
+import { CREATE_USER } from "../../Graphql/User/Mutation";
 import { useMutation } from "@apollo/client";
 function CreateUser() {
   const [name, setName] = useState("");
@@ -13,7 +13,7 @@ function CreateUser() {
       <input
         type="text"
         placeholder="name"
-        onChange={(event: any) => {
+        onChange={(event) => {
           setName(event.target.value);
         }}
       />

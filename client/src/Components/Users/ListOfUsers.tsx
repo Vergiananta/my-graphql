@@ -1,6 +1,6 @@
 import React from "react";
-import { GET_ALL_USERS } from "../Graphql/Queries";
-import { DELETE_USER } from "../Graphql/Mutation";
+import { GET_ALL_USERS } from "../../Graphql/User/Queries";
+import { DELETE_USER } from "../../Graphql/User/Mutation";
 import { useQuery, useMutation } from "@apollo/client";
 
 function ListOfUsers() {
