@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Fragment } from "react/jsx-runtime"
 import { Header } from "./Header";
-import { Routes } from "../Routes";
+import { Routing } from "../Routes";
 import { Grid } from "@mui/material";
 
 
@@ -13,8 +13,9 @@ export const TwoLayout = () => {
 
     return (
         <Fragment>
-            <Header mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}></Header>
-            <Routes/>
+            <Grid>
+                <Header mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}></Header>
+            </Grid>
         </Fragment>
     )
 }

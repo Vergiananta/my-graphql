@@ -10,6 +10,7 @@ function ListOfUsers() {
 
   return (
     <div>
+      <p>test tugas</p>
       {data &&
         data.getAllUsers.map((user: any) => {
           return (

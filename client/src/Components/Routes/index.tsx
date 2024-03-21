@@ -1,13 +1,12 @@
-import { Switch } from 'react-router-dom';
-import { Route } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
+import ListOfUsers from '../Users/ListOfUsers';
+import { Login } from '../Auth';
 
-export const Routes = () => {
+export const Routing = () => {
   return (
-    <Switch>
-      <Route exact path="/">
-        <p>Home</p>
-        <p>This is Home Page</p>
-      </Route>
-    </Switch>
+      <Routes>
+        <Route path="/" element={<ListOfUsers/>} />
+        <Route path='/auth/login' element={<Login/>}/>
+      </Routes>
   );
 };
