@@ -11,22 +11,25 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Sidebar } from "./Sidebar";
 import { Routing } from "../Routes";
+import { AuthContext } from "../../Context/AuthContext";
 
 interface Props {
   handleDrawerToggle: any
   window?: () => Window;
-  mobileOpen: boolean
+  mobileOpen: boolean;
 }
 
 export const Header = (props: Props) => {
-  const { window } = props;
-  const navItems = ["Home", "About", "Contact"];
+  const {authenticated, setAuthenticated} = React.useContext(AuthContext)
 
+  const { window, mobileOpen, handleDrawerToggle } = props;
+  const navItems = ["Home", "About", "Contact"];
+  const dashboard = ["Company", "Talent"]
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <>
       <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
@@ -47,10 +50,14 @@ export const Header = (props: Props) => {
             MUI
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
+            {authenticated ? navItems.map((item) => (
               <Button key={item} sx={{ color: "#fff" }}>
                 {item}
               </Button>
+            )) : dashboard.map((item) => (
+                <Button key={item} sx={{ color: "#fff" }}>
+                    {item}
+                </Button>
             ))}
           </Box>
         </Toolbar>
@@ -72,12 +79,7 @@ export const Header = (props: Props) => {
           <Sidebar navItems={navItems} handleDrawerToggle={props.handleDrawerToggle}/>
         </Drawer>
       </nav>
-      <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
-        <Typography>
-          <Routing/>
-        </Typography>
-      </Box>
-    </Box>
+      
+    </>
   );
 };

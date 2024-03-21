@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Fragment } from "react/jsx-runtime"
 import { Header } from "./Header";
 import { Routing } from "../Routes";
-import { Grid } from "@mui/material";
+import { Box, Grid, Toolbar, Typography } from "@mui/material";
 
 
 export const TwoLayout = () => {
@@ -11,11 +11,17 @@ export const TwoLayout = () => {
         setMobileOpen((prevState) => !prevState);
     };
 
+    const authenticated = localStorage.getItem('token')
+
     return (
-        <Fragment>
-            <Grid>
+        <Box sx={{ display: "flex" }}>
                 <Header mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}></Header>
-            </Grid>
-        </Fragment>
+                <Box component="main" sx={{ p: 3 }}>
+            <Toolbar />
+            <Typography>
+          <Routing/>
+        </Typography>
+      </Box>
+        </Box>
     )
 }
