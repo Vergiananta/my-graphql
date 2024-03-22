@@ -1,4 +1,5 @@
-import { ReactNode, createContext, useState } from "react"
+import { log } from "console";
+import { ReactNode, createContext, useState, useContext } from "react"
 import { useNavigate } from "react-router-dom";
 
 
@@ -8,26 +9,36 @@ type Props = {
 
 type IAuthContext = {
     authenticated: boolean;
-    setAuthenticated: (newState: boolean) => void
+    toggleAuthenticated: () => void;
 }
 
 const initialValue = {
     authenticated: false,
-    setAuthenticated: () => {}
+    toggleAuthenticated: () => {} 
 }
 
 const AuthContext = createContext<IAuthContext>(initialValue)
 
-const AuthProvider = ({children}: Props) => {
-    const [authenticated, setAuthenticated]= useState(initialValue.authenticated)
+const useAuth = () => {
+    console.log('terpanggil');
+    
+   return useContext(AuthContext)};
 
-    const navigate = useNavigate()
+
+const AuthProvider = ({children}: Props) => {
+    const [authenticated, setAuthenticated] = useState<boolean>(initialValue.authenticated);
+
+    const toggleAuthenticated = () => {        
+        setAuthenticated((prevState) => !prevState);
+        console.log('togle',authenticated);
+        
+    };
 
     return (
-        <AuthContext.Provider value={{authenticated, setAuthenticated}}>
+        <AuthContext.Provider value={{authenticated, toggleAuthenticated}}>
             {children}
         </AuthContext.Provider>
     )
 }
 
-export { AuthContext, AuthProvider}
+export { AuthContext, useAuth, AuthProvider}

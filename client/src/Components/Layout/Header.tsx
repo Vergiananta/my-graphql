@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const Header = (props: Props) => {
-  const {authenticated, setAuthenticated} = React.useContext(AuthContext)
+  const {authenticated, toggleAuthenticated} = React.useContext(AuthContext)
 
   const { window, mobileOpen, handleDrawerToggle } = props;
   const navItems = ["Home", "About", "Contact"];
@@ -37,7 +37,7 @@ export const Header = (props: Props) => {
             color="inherit"
             aria-label="open drawer"
             edge="start"
-            onClick={props.handleDrawerToggle}
+            onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
@@ -66,8 +66,8 @@ export const Header = (props: Props) => {
         <Drawer
           container={container}
           variant="temporary"
-          open={props.mobileOpen}
-          onClose={props.handleDrawerToggle}
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
@@ -76,7 +76,7 @@ export const Header = (props: Props) => {
             "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
           }}
         >
-          <Sidebar navItems={navItems} handleDrawerToggle={props.handleDrawerToggle}/>
+          <Sidebar navItems={navItems} handleDrawerToggle={handleDrawerToggle}/>
         </Drawer>
       </nav>
       

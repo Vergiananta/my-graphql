@@ -4,6 +4,7 @@ import "./App.css";
 import { TwoLayout } from "./Components/Layout/TwoLayout";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { AuthProvider } from "./Context/AuthContext";
 function App() {
   const client = new ApolloClient({
     uri: "http://localhost:3001/graphql",
@@ -16,10 +17,9 @@ function App() {
     <>
       <ApolloProvider client={client}>
         <Router>
-          {
-            token ? <TwoLayout />: <div>kesini</div>
-          }
-          
+          <AuthProvider>
+            <TwoLayout/>
+          </AuthProvider>
         </Router>
       </ApolloProvider>
     </>

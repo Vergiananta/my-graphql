@@ -1,25 +1,29 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Context/AuthContext";
+import { AuthContext, useAuth } from "../../Context/AuthContext";
+import { Grid } from "@mui/material";
+import { log } from "console";
 
 
 
 
 
 export const Login = () => {
-    const {authenticated, setAuthenticated} = useContext(AuthContext)
+  const { authenticated, toggleAuthenticated } = useAuth();
 
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    setAuthenticated(true)
+    toggleAuthenticated()
+    console.log('handleLogin: ',authenticated);
+    
     navigate('/')
   }
     return (
-        <div>
+        <Grid>
             
-            <button onClick={() => handleLogin()}>Authenticate</button>
+            <button onClick={handleLogin}>{authenticated ? "Logout" : "Login"}</button>
 
-        </div>
+        </Grid>
     )
 }
